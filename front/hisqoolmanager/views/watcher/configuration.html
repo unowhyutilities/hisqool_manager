@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+    {% if admin %}
+    <div class="float-right"><a class="button" href="/watcher/restart/{{ name }}"><i class="fas fa-sync"></i></a></div>
+    {% endif %}
+
+    <h3>{{ name }}: {{ summary.state }}</h3>
+    {% if restarted %}
+    <p class="success-msg"><i class="fas fa-info-circle"></i>&nbsp;Configuration restarted successfully</i></p>
+    {% endif %}
+  {% if unit %}
+  <h4>Properties</h4>
+  <table>
+      <tbody>
+        <tr><th>Description</th><td>{{ unit.description }}</td></tr>
+        <tr><th>Triggers</th><td>{{ unit.triggers }}</td></tr>
+        <tr><th>When</th><td>{{ unit.when }}</td></tr>
+        <tr><th>Payload</th><td><i class="fas fa-file-archive"></i>&nbsp;<a href="/watcher/payloads/{{ summary.payloadSummary.id }}" class="payloadLink">{{ summary.payloadSummary.name }}</a>&nbsp;<i class="fas fa-cloud-download-alt"></i>&nbsp;{{ summary.payloadSummary.state.state }}</td></tr>
+        <tr><th>Execution state</th><td>{{ result.executionState }}</td></tr>
+      </tbody>
+  </table>
+  {% if admin and unit.options %}
+  <h4>Options</h4>
+  <pre>{{ unit.options | dump(2) }}</pre>
+  {% endif %}
+  {% if result.log and admin %}
+  <h4>Execution Logs</h4>
+  <pre>
+{{ result.log }}
+  </pre>
+  {% endif %}
+  {% else %}
+  <p>Unknown configuration unit</p>
+  {% endif %}
+  </div>
+  {% endblock %}

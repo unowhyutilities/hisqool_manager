@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+    {% if general.admin %}
+    <div class="float-right"><a class="button" href="/mqtt/restart"><i class="fas fa-sync"></i></a></div>
+    {% endif %}
+
+<h3>MQTT</h3>
+
+<table>
+    <tbody>
+        {% for name, item in configuration %}{% if not r/^__/.test(name) %}
+        <tr>
+            <th>{{ name }}</th>
+            <td>{{ item }}</td>
+        </tr>
+        {% endif %}{% endfor %}
+    </tbody>
+</table>
+
+<h3>Subscribed topics</h3>
+
+<ul>
+    {% for topic in topics%}
+    <li><a href="/mqtt/topic{{topic}}">{{topic}}</a></li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

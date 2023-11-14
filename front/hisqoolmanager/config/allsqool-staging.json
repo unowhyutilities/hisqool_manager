@@ -1,0 +1,21 @@
+{
+  "services": {
+    "mqtt": {
+      "available": true,
+      "endPoint": "wss://allsqool-staging.hisqool.dev/mqtt",
+      "username": "desktop",
+      "password": "jee1Leichi",
+      "topic": "/hisqool/devices/",
+      "keepAlive": 120
+    },
+    "logs": {
+      "available": true,
+      "endPoint": "https://facts.allsqool-staging.hisqool.dev/",
+      "api_key": "U2FsdGVkX191W2yKDYWplBZEodmTSM+KzWojXneQMWhI4/VDgwPGgYXaortRcyWEDsG7/RVLtifjdPjtVhz18fWv2N3W7nWfw0n03c4pYtw="
+    },
+    "api": {
+      "available": true,
+      "endPoint": "https://allsqool-staging.hisqool.dev/graphql/v1/graphql"
+    }
+  }
+}

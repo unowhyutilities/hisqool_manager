@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block body %}
+<div class="container">
+  <h3>Payloads</h3>
+  {% if payloads | length %}
+  <table>
+    <tbody>
+      {% for id, payload in payloads %}
+      <tr>
+        <td>
+          <a href="/watcher/payloads/{{ id }}">{{ id }}: {{ payload.name }}</a>
+          <div>{{ payload.description }}</div>
+          <div>
+            <i class="fas fa-file-archive"></i>&nbsp;{{ payload.size | filesizeformat }}, {{ payload.digest }}
+            <a href="{{ payload.url}}" class="payloadurl"><i class="fas fa-download"></i></a>
+          </div>
+        </td>
+        <td>
+          {% if payload.state.state == 'Downloading' %}{{ payload.percentage | int }} % {% else %}{{ payload.state.state
+          }}{% endif %}
+        </td>
+        <td></td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No payloads</p>
+  {% endif %}
+</div>
+{% endblock %}

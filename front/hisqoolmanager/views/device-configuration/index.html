@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <h3>Configuration Units</h3>
+{% if units | length %}{% for key, unit in units | dictsort %}
+<h4>{{key}}</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for name, item in unit %}
+        <tr>
+            <th>{{ name }}</th>
+            <td>{% if name == 'payload' %}<a href="{{ item.url}}" class="payloadurl">{{ item.url }}</a><br>
+              {{ item.size | filesizeformat }}, {{ item.digest }}
+              {% elif name == 'options'%}<pre>{% if admin %}{{ item | dump(2) }}{% else %}****{% endif %}</pre>
+              {% else %}{{ item }}{% endif %}<td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}{% else %}
+<p>No configuration units</p>
+{% endif %}
+</div>
+{% endblock %}

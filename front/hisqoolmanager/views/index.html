@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <h3>Welcome to the HiSqool MDM Agent</h3>
+  {% if general.admin %}
+  <div class="float-right"><a class="button" href="/stop"><i class="fas fa-power-off"></i></a></div>
+  {% endif %}
+  <h4>Application information</h4>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Device Id</th><td>{{ general.deviceId }}</td>
+      </tr>
+      <tr>
+        <th>Admin</th><td>{{ general.admin }}</td>
+      </tr>
+      <tr>
+          <th>Version</th><td>{{ version.packageVersion }}</td>
+      </tr>
+      <tr>
+        <th>Build number</th><td>{{ version.buildNumber }}</td>
+      </tr>
+      <tr>
+        <th>Git Version</th><td>{{ version.gitVersion }}</td>
+      </tr>
+      <tr>
+        <th>Git Branch</th><td>{{ version.branch }}</td>
+      </tr>
+      <tr>
+        <th>Git commit</th><td>{{ version.gitCommit }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  {% if general.admin %}
+  <h4>Paths</h4>
+  <table>
+    <tbody>
+    {% for name, item in paths %}
+    <tr><th>{{ name | capitalize }}</th><td>{{ item }}<td></tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  {% endif %}
+
+</div>
+{% endblock %}

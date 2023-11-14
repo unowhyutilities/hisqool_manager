@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+  <h3>Device information</h3>
+  <table>
+    <thead>
+      <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    {% for name, item in si %}
+    <tr><th>{{ name | capitalize }}</th><td>{{ item }}<td></tr>
+    {% endfor %}
+  </table>
+  <h3>OS information</h3>
+  <table>
+    <thead>
+      <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    {% for name, item in os %}
+    <tr><th>{{ name | capitalize }}</th><td>{{ item }}<td></tr>
+    {% endfor %}
+  </table>
+  <h3>Battery information</h3>
+  <table>
+    <thead>
+      <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    {% for name, item in battery %}
+    <tr><th>{{ name | capitalize }}</th><td>{{ item }}<td></tr>
+    {% endfor %}
+  </table>
+
+  <h3>Wifi networks</h3>
+  <table>
+    <thead>
+      <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    {% for conn in wc %}
+    <tr><td colspan="2">--</td></tr>
+    {% for name, item in conn %}
+    <tr><th>{{ name | capitalize }}</th><td>{{ item }}<td></tr>
+    {% endfor %}
+    {% endfor %}
+  </table>
+
+</div>
+
+{% endblock %}

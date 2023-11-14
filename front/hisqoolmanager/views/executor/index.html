@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+  <h3>Execution logs</h3>
+  {% if result | length %}
+    {% for item in result %}
+      <p>{{ item }}</p>
+    {% endfor %}
+  {% else %}
+    <p>No execution logs available.</p>
+  {% endif %}
+</div>
+{% endblock %}

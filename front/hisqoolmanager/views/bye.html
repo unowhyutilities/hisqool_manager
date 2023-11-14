@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block style %}
+{{ super() }}
+<style type="text/css">
+.endicon {
+  text-align:center;
+  font-size: 10em;
+  color: #B8353B;
+}
+.endtext {
+  text-align:center;
+  font-size: 3em;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row endicon">
+    <div class="column"><i class="fas fa-ban"></i></div>
+  </div>
+  <div class="row endtext">
+      <div class="column">Goodbye...</div>
+  </div>
+</div>
+{% endblock %}

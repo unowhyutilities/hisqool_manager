@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+{% if payload %}
+{% if admin %}
+<div class="float-right"><a class="button" href="/watcher/payloads/{{ id }}/restart"><i class="fas fa-sync"></i></a></div>
+{% endif %}
+
+<h3>{{ id }}: {{ payload.name }}</h3>
+{% if restarted %}
+<p class="success-msg"><i class="fas fa-info-circle"></i>&nbsp;Payload restarted successfully</i></p>
+{% endif %}
+<table>
+    <tbody>
+        <tr><th>Description</th><td>{{ payload.description }}</td></tr>
+        <tr><th>Status</th><td>{% if payload.state.state == 'Downloading' %} {{ payload.percentage | int }} %{% else %}{{ payload.state.state }}{% endif %}<td></tr>
+        <tr><th><i class="fas fa-download"></i></th><td><a href="{{ payload.url}}" class="payloadurl">{{ payload.url}}</a></td></tr>
+        <tr><th><i class="fas fa-file-archive"></i></th><td>{{ payload.size | filesizeformat }}, {{ payload.digest }}</td></tr>
+        {% if payload.unitNames %}
+        <tr>
+          <th>Units</th>
+          <td>
+            {% for name in payload.unitNames %}
+            <a href="/watcher/configuration/{{ name }}">{{ name }}</a><br/>
+            {% endfor %}
+          </td>
+        </tr>
+        {% endif %}
+            </tbody>
+</table>
+{% else %}
+<p>No payload with id {{ id }}.</p>
+{% endif %}
+</div>
+{% endblock %}

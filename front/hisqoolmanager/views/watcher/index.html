@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block body %}
+<div class="container">
+  <h3>Configuration Units</h3>
+  {% if units | length %}
+  <table>
+    <tbody>
+      {% for key, unit in units %}
+      <tr>
+        <td>
+          <a href="/watcher/configuration/{{ key }}">{{ key }}</a>
+          <div>{{ unit.description }}</div>
+          <div class="payloadStatus">
+            <i class="fas fa-file-archive"></i>&nbsp;<a
+              href="/watcher/payloads/{{ unit.payloadSummary.id }}"
+              class="payloadLink"
+              >{{ unit.payloadSummary.name }}</a
+            >&nbsp;<i class="fas fa-cloud-download-alt"></i>&nbsp;{{ unit.payloadSummary.state.state }}
+          </div>
+        </td>
+        <td>{{ unit.state }}</td>
+        <td></td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No configuration units</p>
+  {% endif %}
+</div>
+{% endblock %}

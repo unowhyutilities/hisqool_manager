@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block body %}
+<div class="container">
+  <h3>Configuration</h3>
+  <table>
+    <tbody>
+        {% for name, item in service %}{% if not r/^__/.test(name) %}
+        <tr>
+            <th>{{ name }}</th>
+            <td>{{ item }}</td>
+        </tr>
+        {% endif %}{% endfor %}
+    </tbody>
+  </table>
+<h3>Facts</h3>
+  {% if deleted %}
+  <p class="success-msg"><i class="fas fa-info-circle"></i>&nbsp;Fact {{ deleted }} deleted successfully</i></p>
+  {% endif %}
+  <table>
+    <tbody>
+      {% if facts | length %} {% for fact in facts %} {% if fact | length %} {% for name, item in fact %}
+      <tr>
+        <th>{{ name }}</th>
+        <td>{{ item }}{% if loop.first and general.admin %}&nbsp;<a href="/facts/delete/{{ item }}"><i class="fas fa-trash"></i></a>{% endif %}</td>
+      </tr>
+      {% endfor %} {% else %}
+      <tr>
+        <th>No fact</th>
+        <td></td>
+      </tr>
+      {% endif %} {% if not loop.last %}
+      <tr>
+        <th colspan="2"></th>
+      </tr>
+      {% endif %} {% endfor %} {% else %}
+      <tr>
+        <th>No fact</th>
+        <td></td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
